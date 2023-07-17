@@ -1,4 +1,4 @@
-import { getDownloadURL, ref, uploadBytes, uploadBytesResumable, } from 'firebase/storage';
+import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 import React, { useRef, useState } from 'react';
 
 import { toast } from 'react-toastify';
@@ -62,6 +62,9 @@ export default function AddClient() {
             break;
           case 'running':
             console.log('Upload is running');
+            break;
+          default:
+            console.log('defalut cse');
             break;
         }
       },
