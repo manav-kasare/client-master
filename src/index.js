@@ -1,14 +1,11 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import { AddClient, DataEntry, Home } from './routes';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { AddClient, DataEntry, Home } from "./routes";
 
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const router = createBrowserRouter([
   {
@@ -20,15 +17,15 @@ const router = createBrowserRouter([
     element: <AddClient />,
   },
   {
-    path: "/dataEntry",
+    path: "/dataEntry/:id",
     element: <DataEntry />,
   },
 ]);
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-      <RouterProvider router={router} />
-      <ToastContainer />
+    <RouterProvider router={router} />
+    <ToastContainer />
   </React.StrictMode>
 );

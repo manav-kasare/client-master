@@ -99,6 +99,7 @@ export default function AddClient() {
 
   return (
     <div className='py-4' style={{ height: '100vh' }}>
+      {/* header */}
       <div className='mx-4 border d-flex align-items-center justify-content-center'>
         <div style={{ fontSize: 24 }}>Add Client</div>
       </div>

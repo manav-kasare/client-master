@@ -1,52 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, } from 'react-router-dom';
 import { getClients } from '../utils/firebase';
 
-const clientsMock = [{
-  fullname: 'Manav Kasare',
-  email: 'test@test.com',
-  avatar: 'https://randomuser.me/api/portraits/men/21.jpg',
-  phone: '0987654321',
-  pan: '12345567',
-  address: '1981-84, Cappar Walan, Bank Street, Karol Bagh, Delhi, India',
-  deposit: 1000,
-},
-{
-  fullname: 'Manav Kasare',
-  email: 'test@test.com',
-  avatar: 'https://randomuser.me/api/portraits/men/21.jpg',
-  phone: '0987654321',
-  pan: '12345567',
-  address: '1981-84, Cappar Walan, Bank Street, Karol Bagh, Delhi, India',
-  deposit: 1000,
-},
-{
-  fullname: 'Manav Kasare',
-  email: 'test@test.com',
-  avatar: 'https://randomuser.me/api/portraits/men/21.jpg',
-  phone: '0987654321',
-  pan: '12345567',
-  address: '1981-84, Cappar Walan, Bank Street, Karol Bagh, Delhi, India',
-  deposit: 1000,
-},
-{
-  fullname: 'Manav Kasare',
-  email: 'test@test.com',
-  avatar: 'https://randomuser.me/api/portraits/men/21.jpg',
-  phone: '0987654321',
-  pan: '12345567',
-  address: '1981-84, Cappar Walan, Bank Street, Karol Bagh, Delhi, India',
-  deposit: 1000,
-}]
 
-const ClientTile = ({ avatar, fullname, email, phone, pan, address, deposit }) => {
+const ClientTile = ({ id, avatar, fullname, email }) => {
   const navigate = useNavigate();
 
 
   const handleNavigation = (e) => {
     e.preventDefault();
 
-    navigate('/dataEntry')
+    navigate('/dataEntry/' + id)
   }
 
   return (

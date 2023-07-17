@@ -1,5 +1,13 @@
 import { initializeApp } from "firebase/app";
-import { addDoc, collection, getDocs, getFirestore } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  getFirestore,
+  updateDoc,
+} from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 
 import firebaseConfig from "../data/firebase.json";
@@ -23,10 +31,34 @@ export const getClients = async () => {
   }
 };
 
+export const getClient = async (id) => {
+  try {
+    const response = (await getDoc(doc(collection(db, "clients"), id))).data();
+    return { data: response, error: null };
+  } catch (error) {
+    return {
+      data: null,
+      error: error.message ? error.message : "Something went wrong!",
+    };
+  }
+};
+
 export const createClient = async (payload) => {
   try {
     const ref = await addDoc(collection(db, "clients"), payload);
     return { data: ref.id, error: null };
+  } catch (error) {
+    return {
+      data: null,
+      error: error.message ? error.message : "Something went wrong!",
+    };
+  }
+};
+
+export const updateClient = async (id, payload) => {
+  try {
+    const ref = await updateDoc(doc(collection(db, "clients"), id), payload);
+    return { data: ref, error: null };
   } catch (error) {
     return {
       data: null,
