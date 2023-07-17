@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { getClients } from '../utils/firebase';
 
 const clientsMock = [{
   fullname: 'Manav Kasare',
@@ -51,7 +52,7 @@ const ClientTile = ({ avatar, fullname, email, phone, pan, address, deposit }) =
   return (
     <div className='mx-4 border d-flex flex-direction-row align-items-center p-2'>
       <div>
-        <img alt={'avatar' + fullname} src={avatar} height="50" width="50" className='rounded-circle' />
+        <img alt={'avatar'} src={avatar} height="50" width="50" className='rounded-circle' />
       </div>
       <div className='mx-2' style={{ flex: 1 }}>
         <div>{fullname}</div>
@@ -65,8 +66,18 @@ const ClientTile = ({ avatar, fullname, email, phone, pan, address, deposit }) =
 }
 
 export default function Home() {
-  const [clients, setClients] = useState(clientsMock);
+  const [clients, setClients] = useState([]);
   const navigate = useNavigate();
+
+  const handleGetClients = async () => {
+    const response = await getClients();
+    console.log('response', response)
+    if (!response.error) setClients(response.data)
+  }
+
+  useEffect(() => {
+    handleGetClients();
+  }, [])
 
   const renderClient = (item, index) => <ClientTile key={index} {...item} />
 
